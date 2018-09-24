@@ -27,7 +27,7 @@ for t in range(data_size):
         broker.portfolio = broker.portfolio - data[t]
         print("Bought: " + formatPrice(data[t]) + "| Portfolio Value: " + formatPrice(broker.portfolio))
         
-        reward = data[t]-data[t+1]
+        reward = 0
     
     elif action == 2 and len(broker.trades_list) > 0:  # sell
         buying_price = broker.trades_list.pop(0)

@@ -35,8 +35,8 @@ class Broker:  # corresponds to the agent in RL framework
     def q_function(self):  # returns the model
  
          model = Sequential()
-         model.add(Dense(units=10, input_dim=self.state_size, activation="relu"))
-         model.add(Dense(units=20, activation="relu"))
+         model.add(Dense(units=8, input_dim=self.state_size, activation="relu"))
+         model.add(Dense(units=16, activation="relu"))
          model.add(Dense(units=8, activation="relu"))
          model.add(Dense(self.action_size, activation="relu"))
          model.compile(loss="mean_squared_logarithmic_error", optimizer=Adam(lr=0.002))
