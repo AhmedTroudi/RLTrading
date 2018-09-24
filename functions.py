@@ -27,8 +27,13 @@ def sigmoid(signal):
 
 def getState(data, t, n):
     state=[]
+    #close = data.values
+    #diff = np.diff(close)
     for i in range(t,t+n-1):
-        state.append(np.tanh(data[:,0][i+1]-data[:,0][i]))
+    
+        state.append(sigmoid(data[:,0][i]-data[:,0][i-1])) #just normalizing values
+
     state=np.array(state)
-    state=state.reshape(n-1,1)
+    state=state.reshape(1,n-1)
     return state
+

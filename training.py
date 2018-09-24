@@ -15,13 +15,13 @@ batch_size = 20  # after this number of examples update weights
 
 for e in range(nb_epochs + 1):
     print("Epoch Number:" + str(e) + "/" + str(nb_epochs))
-    state = getState(data, 0, state_size + 1)
-    print(state.shape)
+    state = getState(data, 0, state_size +1)
+    
     reward = 0
     gain = 0
     broker.trades_list = []
     broker.portfolio = 100000
-    for t in range(data_size):
+    for t in range(data_size - state_size + 1):
         action = broker.act(state)
 
         if action == 1 and broker.portfolio >= data[t]:    # buy
@@ -34,8 +34,13 @@ for e in range(nb_epochs + 1):
         elif action == 2 and len(broker.trades_list) > 0:  # sell
             buying_price = broker.trades_list.pop(0)
             broker.portfolio = broker.portfolio + data[t]
-            reward = max(data[t] - buying_price, 0)
-            gain += data[t] - buying_price
+            
+            #reward = max(data[t] - buying_price, 0)
+            #gain += data[t] - buying_price
+            if (gain>0):
+                reward = 1
+            else:
+                reward = 0
             print("Sell: " + formatPrice(data[t]) + " | Profit: " + formatPrice(
                 data[t] - buying_price) + "| Portfolio Value: " + formatPrice(broker.portfolio) + "| Inventory Size:" + str(
                 len(broker.trades_list)))
@@ -55,7 +60,6 @@ for e in range(nb_epochs + 1):
 
         if len(broker.memory) > batch_size:
             broker.expReplay(batch_size)
-            print("exp replay executed")
 
-    if e % 10 == 0:
-        broker.model.save("models/" + stock_name + "_2ep_" + str(e))
+    if e % 20 == 0:
+        broker.model.save("models/" + stock_name + "_ep_" + str(e))
