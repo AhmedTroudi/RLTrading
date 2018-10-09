@@ -10,7 +10,7 @@ stock_name, state_size, nb_epochs = sys.argv[1], int(sys.argv[2]), int(sys.argv[
 broker = Broker(state_size)  # n = how many days represent a state
 data = getStockDataVector(stock_name)
 data_size = len(data) - 1
-batch_size = 20  # after this number of examples update weights
+batch_size = 100  # after this number of examples update weights
 
 
 for e in range(nb_epochs + 1):
