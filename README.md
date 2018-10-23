@@ -1,5 +1,5 @@
 # RLTrading
-Algorithm Trading in RL using Q learning Algorithm
+An attempt in algorithm Trading in RL using Q learning Algorithm
 
 # Reinforcement Learning
 This area of machine learning consists in training an agent by reward and punishment without needing to
