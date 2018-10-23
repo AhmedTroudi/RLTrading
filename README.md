@@ -9,6 +9,7 @@ by trading a single stock under the reinforcement learning framework.
 
 # Why choose RL?
 Here’s a list :
+
 • Instead of needing to hand-code a rule-based policy which requires a certain level of expertise in finance,
 Reinforcement Learning directly learns a policy. There’s no need for us to specify rules and thresholds
 such as “buy when you are more than 75% sure that the market will move up”. That’s baked in the
